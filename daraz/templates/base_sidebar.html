@@ -1,0 +1,203 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>AsanBusiness</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/logo.png' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{#   Chart.js LINK #}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+
+
+</head>
+<body>
+
+ <div class="container_wrapper">
+       <div class="navigation">
+           <ul>
+           <li>
+                   <a href="#">
+                <img src="{% static 'images/ABC Logo-02.svg' %}" alt="" style="width: 78%; margin-left: -10px" />
+                   </a>
+               </li>
+               {% if request.user.is_staff%}
+                    <li>
+                   <a href="/dashboard">
+                       <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                       <span class="tittle">Dashboard</span>
+                   </a>
+               </li>
+
+                   <li>
+                   <a href="/multiplesearch">
+                       <span class="icon"><ion-icon name="grid-outline"></ion-icon></span>
+                       <span class="tittle">Product Hunting</span>
+                   </a>
+               </li>
+                <li>
+                   <a href="/search">
+                       <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
+                       <span class="tittle">Specific Product</span>
+                    </a>
+               </li>
+
+{#                   <li>#}
+{#                   <a href="#">#}
+{#                       <span class="icon"><ion-icon name="analytics-outline"></ion-icon></span>#}
+{#                       <span class="tittle">Tracking</span>#}
+{#                   </a>#}
+{#               </li>#}
+
+                <li>
+                   <a href="/profit_calculator">
+                       <span class="icon"><ion-icon name="calculator-outline"></ion-icon></span>
+                       <span class="tittle">Profit Calculator</span>
+                    </a>
+               </li>
+
+                <li>
+                   <a href="/upload">
+                       <span class="icon"><ion-icon name="newspaper-outline"></ion-icon></span>
+                       <span class="tittle">Sheet Upload</span>
+                   </a>
+               </li>
+
+                <li>
+                   <a href="/seller">
+                       <span class="icon"><ion-icon name="people-circle-outline"></ion-icon></span>
+                       <span class="tittle">All Employee</span>
+                   </a>
+               </li>
+
+               <li>
+                   <a href="{% url 'logout' %}" >
+                       <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                       <span class="tittle">Sign Out</span>
+                   </a>
+               </li>
+
+               {% else %}
+                   <li>
+                   <a href="/dashboard">
+                       <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                       <span class="tittle">Dashboard</span>
+                   </a>
+               </li>
+
+                   <li>
+                   <a href="/multiplesearch">
+                       <span class="icon"><ion-icon name="grid-outline"></ion-icon></span>
+                       <span class="tittle">Product Hunting</span>
+                   </a>
+               </li>
+                <li>
+                   <a href="/search">
+                       <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
+                       <span class="tittle">Specific Product</span>
+                    </a>
+               </li>
+
+                    <li>
+                   <a href="/profit_calculator">
+                       <span class="icon"><ion-icon name="calculator-outline"></ion-icon></span>
+                       <span class="tittle">Profit Calculator</span>
+                    </a>
+               </li>
+
+                   <li>
+                   <a href="/contact">
+                       <span class="icon"><ion-icon name="help-circle-outline"></ion-icon></span>
+                       <span class="tittle">Help</span>
+                    </a>
+               </li>
+               <li>
+                   <a href="{% url 'logout' %}" >
+                       <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                       <span class="tittle">Sign Out</span>
+                   </a>
+               </li>
+
+               {% endif %} 
+
+
+
+           </ul>
+       </div>
+
+     {# START MAIN #}
+    <div class="main">
+        <div class="topbar">
+{#  MENU BUTTON  #}
+            <div class="toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+{# Search BAR  #}
+            <div class="search">
+                <label>
+                    <input type="text" placeholder="Search Here">
+                    <ion-icon name="search-outline"></ion-icon>
+                </label>
+            </div>
+{#   USER IMAGE         #}
+
+            <div class="user">
+
+                <a  href="{% url 'account' %}">
+                    <span><b>{{ request.user.first_name }} {{ request.user.last_name }}</b></span>
+                    <img src="{{request.user.profile.profile_pic.url}}">
+                </a>
+            </div>
+
+        </div>
+
+    {% block content %}
+
+
+    {% endblock %}
+
+
+    </div>
+{# END MAIN#}
+
+
+   </div>
+
+
+{# BOOTSTRAP LINKS #}
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+{#--------#}
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+{#End of Boostrap Lonk#}
+{# ADD ICONIC ICONS #}
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script>
+    // MENU TOGGLE
+    let toggle =  document.querySelector('.toggle');
+    let navigation =  document.querySelector('.navigation');
+    let main =  document.querySelector('.main');
+
+    toggle.onclick = function() {
+        navigation.classList.toggle('active');
+        main.classList.toggle('active');
+    }
+    // ADD Hovered class in selected list
+    let list = document.querySelectorAll('.navigation li');
+    function activeLink() {
+        list.forEach((item) =>
+            item.classList.remove('hovered'));
+        this.classList.add('hovered');
+    }
+    list.forEach((item) =>
+    item.addEventListener('mouseover',activeLink));
+
+</script>
+
+</body>
+</html>

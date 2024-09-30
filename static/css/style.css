@@ -1,0 +1,841 @@
+@import 'https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap';
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+
+}
+/*#483d8b    #dee6e8*/
+:root
+{
+    --blue: #2c2b7c ;
+    --white: #dee6e8;
+    --lwhite:#fff;
+    --grey: #f5f5f5;
+    --black1: #222;
+    --black2: #999;
+}
+body
+{
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+a{
+    text-decoration: none;
+}
+/* START OD SIDEBAR*/
+.container_wrapper
+{
+    position: relative;
+    width: 100%;
+
+}
+.navigation
+{
+    position: fixed;
+    width: 260px;
+    height: 100%;
+    /*side bar color*/
+    background: var(--blue);
+    /* Space from left side*/
+    border-left: 10px solid var(--blue);
+    transition: 0.5s;
+    overflow: hidden;
+
+}
+.navigation active
+{
+    width: 80px;
+
+}
+.navigation ul
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-left: 0;
+
+}
+.navigation ul li
+{
+    position: relative;
+    width: 100%;
+    list-style: none;
+    /* Curve from Inside*/
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+.navigation ul li:hover,
+.navigation ul li.hovered
+{
+    background-color: var(--white);
+}
+/*in List very first List index child is Brand Name AsanBusiness*/
+.navigation ul li:nth-child(1)
+{
+    margin-bottom: 40px;
+    pointer-events: none;
+}
+.navigation ul li a
+{
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: var(--lwhite);
+}
+.navigation ul li:hover a,
+.navigation ul li.hovered a
+{
+    color: var(--blue);
+}
+.navigation ul li a .icon
+{
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 50px;
+    line-height: 70px;
+    text-align: center;
+}
+.navigation ul li a .icon ion-icon
+{
+    font-size: 1.75em;
+}
+.navigation ul li a .tittle
+{
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 50px;
+    line-height: 60px;
+    text-align: start;
+    white-space: nowrap;
+}
+/* Curve from Outside*/
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before
+{
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -50px;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: 35px 35px 0 10px var(--white);
+    pointer-events: none;
+}
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after
+{
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -50px;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: 35px -35px 0 10px var(--white);
+    pointer-events: none;
+}
+/* END OF SIDE BAR*/
+
+
+/* START OF MAIN */
+.main
+{
+    position: absolute;
+    width: calc(100% - 260px);
+    left: 260px;
+    min-height: 100vh;
+    background: var(--white);
+    transition: 0.5s;
+}
+.main.active
+{
+    width: calc(100% - 80px);
+    left: 80px;
+
+}
+
+.topbar
+{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+.toggle
+{
+    position: relative;
+    top: 0;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5em;
+    cursor: pointer;
+}
+.search
+{
+    position: relative;
+    width: 400px;
+    margin: 0 10px;
+}
+.search label
+{
+    position: relative;
+    width: 100%;
+}
+.search label input
+{
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    padding: 5px 20px;
+    padding-left: 35px;
+    font-size: 18px;
+    outline: none;
+    border: 1px solid var(--black2);
+}
+.search label ion-icon
+{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 1.2em;
+}
+
+.user
+{
+    position: relative;
+    /*width: 40px;*/
+    /*height: 40px;*/
+    /*border-radius: 50%;*/
+    /*overflow: hidden;*/
+    cursor: pointer;
+
+}
+
+.user img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    object-fit: cover;
+}
+/* 4  CARD BOX  */
+.cardBox
+{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 30px;
+
+}
+.cardBox .card_wrapper
+{
+    position: relative;
+    background: var(--lwhite);
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+}
+.cardBox .card_wrapper .number
+{
+    position: relative;
+    font-weight: 500;
+    font-size: 2.5em;
+    color: var(--blue);
+}
+.cardBox .card_wrapper .cardName
+{
+    color: var(--black2);
+    font-size: 1.1em;
+    margin-top: 5px;
+}
+.cardBox .card_wrapper .iconBX
+{
+    font-size: 3.5em;
+    color: var(--black2);
+}
+.cardBox .card_wrapper:hover
+{
+    background: var(--blue);
+}
+.cardBox .card_wrapper:hover .number,
+.cardBox .card_wrapper:hover .cardName,
+.cardBox .card_wrapper:hover .iconBX
+{
+    color: var(--lwhite);
+}
+
+/* 4 CARD Box END*/
+
+/* START OF TABLE DETAILS*/
+.details
+{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 30px;
+    margin-top: 10px;
+}
+.details .recentProducts
+{
+    position: relative;
+    display: grid;
+    min-height: 500px;
+    background: var(--lwhite);
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+    border-radius: 20px;
+}
+.cardHeader
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.cardHeader h2
+{
+    font-weight: 600;
+    color: var(--blue);
+}
+.btn
+{
+    position: relative;
+    padding: 5px 10px;
+    background: var(--blue);
+    text-decoration: none;
+    color: var(--lwhite);
+    border-radius: 6px;
+}
+.details table
+{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+.details table thead td
+{
+    font-weight: 600;
+}
+.details .recentProducts table tr
+{
+    color: var(--black1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.details .recentProducts table tr:last-child
+{
+    border-bottom: none;
+}
+.details .recentProducts table tbody tr:hover
+{
+    background: var(--blue);
+    color: var(--lwhite);
+}
+.details .recentProducts table tr td
+{
+    padding: 10px;
+}
+.details .recentProducts table tr td:last-child
+{
+    text-align: end;
+
+}
+.details .recentProducts table tr td:nth-child(2)
+{
+    text-align: end;
+}
+.details .recentProducts table tr td:nth-child(3)
+{
+ text-align: center;
+}
+.status.delivered
+{
+    padding: 2px 4px;
+    background: #32cd32	;
+    color: var(--lwhite);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.status.return
+{
+    padding: 2px 4px;
+    background: #ff0000;
+    color: var(--lwhite);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.status.inprogress
+{
+    padding: 2px 4px;
+    background: #ffb200;
+    color: var(--lwhite);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+/*START OF RECENT CUSTOMERS */
+.recentCustomers
+{
+    position: relative;
+    display: grid;
+    min-height: 500px;
+    padding: 20px;
+    background: var(--lwhite);
+    box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+    border-radius: 20px;
+}
+.recentCustomers .imgBx
+{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.recentCustomers .imgBx img
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.recentCustomers table tr:hover
+{
+    background: var(--blue);
+    color: var(--lwhite);
+}
+.recentCustomers table tr td
+{
+    padding: 12px 10px;
+}
+.recentCustomers table tr td  h4
+{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2em;
+}
+.recentCustomers table tr td h4 span
+{
+    font-size: 14px;
+    color: var(--black2);
+}
+.recentCustomers table tr:hover
+{
+    background: var(--blue);
+    color:  var(--lwhite);
+}
+.recentCustomers table tr:hover td h4 span
+{
+    color: var(--white);
+}
+
+
+/* NOW MAKE IT RESPONSIVE DESIGN*/
+@media (max-width: 991px) {
+    .navigation
+    {
+        left: -300px;
+    }
+    .navigation.active
+    {
+        width: 300px;
+        left: 0;
+    }
+    .main
+    {
+        width: 100%;
+        left: 0;
+    }
+    .main.active
+    {
+        left: 300px;
+    }
+    .cardBox
+    {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+}
+
+/* TWO DIV */
+@media (max-width: 768px)
+{
+    .details
+    {
+        grid-template-columns: repeat(1,1fr);
+    }
+    .recentProducts
+    {
+        overflow-x: auto;
+    }
+    .status.inprogress
+    {
+        white-space: nowrap;
+    }
+
+}
+
+@media (max-width: 480px)
+{
+    .cardBox
+    {
+        grid-template-columns: repeat(1,1fr);
+    }
+    .cardHeader h2
+    {
+        font-size: 20px;
+    }
+    .user
+    {
+        min-width: 40px;
+    }
+    .navigation
+    {
+        width: 100%;
+        left: -100%;
+        z-index: 1000;
+    }
+    .navigation.active
+    {
+        width: 100%;
+        left: 0;
+    }
+    .toggle
+    {
+        z-index: 10001;
+    }
+    .main.active .toggle
+    {
+        position: fixed;
+        right: 0;
+        left: initial;
+        color: var(--lwhite);
+    }
+
+}
+
+/**/
+/**/
+/*END OF RECENT CUSTOMER*/
+
+/*END OF TABLE DETAILS*/
+
+/* START OF Products hunting*/
+.products
+{
+    position: relative;
+    width: 100%;
+    padding: 6px;
+    display: grid;
+    /*grid-template-columns: 2fr 1fr;*/
+    grid-gap: 30px;
+    margin-top: 10px;
+}
+.products .productHunting
+{
+    position: relative;
+    display: grid;
+    min-height: 150px;
+    background: var(--lwhite);
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+    border-radius: 5px;
+}
+.products table
+{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+.products table thead td
+{
+    font-weight: 600;
+}
+.products table thead tr
+{
+       background-color: #c1eaf4;
+}
+.products .productHunting table tr
+{
+    color: var(--black1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.products .productHunting table tr:last-child
+{
+    border-bottom: none;
+}
+.products .productHunting table tbody tr:hover
+{
+    background: var(--blue);
+    color: var(--lwhite);
+}
+.products .productHunting table tr td
+{
+    padding: 10px;
+
+}
+.products .productHunting table tr td:last-child
+{
+    text-align: end;
+
+}
+.products .productHunting table tr td:nth-child(2)
+{
+    text-align: end;
+}
+.products .productHunting table tr td:nth-child(3)
+{
+ text-align: center;
+}
+
+
+/* Prodict images in table*/
+.prod_img{
+    width: 170px;
+    height: 170px;
+}
+/* End of product image in tbale*/
+/**/
+
+* {
+  box-sizing: border-box;
+}
+
+/* Create three equal columns that floats next to each other */
+.column2 {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+.column1 {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    height: 245px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/**/
+.row .table ,th ,td{
+    border: 1px solid #ddd;
+}
+
+/* drop downs in product hunting*/
+.select{
+    position: relative;
+    /*display: grid;*/
+    width: 90%;
+    min-height: 100px;
+    background: var(--lwhite);
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+    border-radius: 60px;
+}
+
+.select_dropdown
+{
+   border-radius: 40px;
+    padding: 5px 20px;
+    padding-left: 35px;
+    font-size: 18px;
+    outline: none;
+    border: 1px solid var(--black2);
+    margin: 0px 10px;
+}
+
+.input-field
+{
+   max-width: 100px;
+    width: 100%;
+    height: 40px;
+    background-color: #f0f0f0;
+    margin: 4px 0;
+    border-radius: 55px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0 0.4rem;
+    position: relative;
+    margin-top: 20px;
+}
+.input-field i{
+    text-align: center;
+    line-height: 40px;
+    color: #acacac;
+}
+.input-field input
+{
+   background: none;
+    outline: none;
+    border: none;
+    line-height: 1;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #333;
+}
+.input-field input:placeholder-shown{
+    color: #aaa;
+    font-weight: 100;
+    height: 43px;
+}
+
+
+
+/* SINGLE SEARCH PRODUCT FROM LINK*/
+
+.ss input{
+
+    border:#2c2b7c solid;
+    border-style: dashed;
+    margin-top: 5px;
+
+}
+.ss input:placeholder-shown{
+
+    text-align: center;
+    color: #aaa;
+    font-weight: 100;
+    height: 43px;
+}
+
+/*.btn_sp{*/
+/*     position: relative;*/
+/*    margin-top: 10px;*/
+/*    width: 56%;*/
+/*    height: 68px;*/
+/*    padding: 5px 10px;*/
+/*    background: var(--blue);*/
+/*    text-decoration: none;*/
+/*    color: var(--lwhite);*/
+/*    border-radius: 50px;*/
+/*}*/
+/**/
+/* End of drop down */
+
+/*Start of seller table list*/
+.details_seller
+{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    /*grid-template-columns: 2fr 1fr;*/
+    grid-gap: 30px;
+    margin-top: 10px;
+}
+.details_seller .recentProducts_seller
+{
+    position: relative;
+    display: grid;
+    min-height: 500px;
+    background: var(--lwhite);
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+    border-radius: 20px;
+
+}
+
+
+/* End of Calculator*/
+/*End of seller table list*/
+
+/* END OF MAIN*/
+
+/* List */
+.down{
+    overflow: scroll;
+    height: 70vh;
+}
+::-webkit-scrollbar{
+    width: 10px;
+    display: none;
+}
+.down table th{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0%;
+    z-index: 1;
+    background-color: #bcf1f9;
+}
+
+
+/* CONATCT FORM*/
+.contact-us-form{
+    width: 520px;
+    margin: auto;
+    border-radius: 40px
+}
+
+.p-5 {
+    padding: 3rem !important;
+}
+.shadow-lg {
+    -webkit-box-shadow: 0 1rem 3rem rgb(0 0 0 / 18%) !important;
+    box-shadow: 0 1rem 3rem rgb(0 0 0 / 18%) !important;
+}
+.bg-light {
+    background-color: #f8f9fa !important;
+}
+/* END OF CONTACT FORM*/
+.redirect-btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+}
+.redirect-btn li{
+    padding: 0px 10px;
+}
+.redirect-btn li a{
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+    line-height: 50px;
+    border-radius: 50px;
+    color: #ffffff;
+    font-size: 22px;
+    box-shadow: 0 4px 10px 0 rgb(0 0 0 / 20%), 0 4px 20px 0 rgb(0 0 0 / 19%);
+}
+.bg-orange{
+    background-color:#fc802c;
+}
+.bg-green{
+    background-color:#70c026;
+}
+.bg-blue{
+    background-color:#26a7d9;
+}
+
+.user_info{
+
+    margin: auto;
+    border-radius: 50px;
+}

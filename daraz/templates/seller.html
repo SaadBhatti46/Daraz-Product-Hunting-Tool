@@ -1,0 +1,65 @@
+{% extends 'base_sidebar.html' %}
+{% block content %}
+{% if seller %}
+<div class="container">
+<div class="container-fluid" >
+<div class="card" >
+<div class="card-body" >
+
+
+                <h2>Sholl Seller List</h2>
+<div class="down">
+            <table class="table table-bordered" style="background-color: #e7f1ff; width: 100%; border-color:#e7f1ff">
+                {% if messages %}
+                    {% for message in messages %}
+                         <div class="alert alert-info">
+                         {{ message }}
+                         </div>
+                    {% endfor %}
+                {% endif %}
+                <thead>
+                <tr>
+        <th scope="col" >ID</th>
+        <th scope="col" >User Name</th>
+        <th scope="col" >First Name</th>
+        <th scope="col" >Last Name</th>
+        <th scope="col" >Email</th>
+        <th scope="col" >Active</th>
+        <th scope="col" >Super User</th>
+        <th scope="col" >Edit</th>
+        <th scope="col" >Delete</th>
+    </tr>
+                </thead>
+                {% for data in seller %}
+        <tr>
+            <td>{{ data.id }}</td>
+            <td>{{ data.username }}</td>
+            <td>{{ data.first_name }}</td>
+            <td>{{ data.last_name }}</td>
+            <td>{{ data.email }}</td>
+            <td>{{ data.is_active }}</td>
+            <td>{{ data.is_superuser }}</td>
+            <td><a href="{% url 'update' data.id %}" class="btn btn-warning btn-sm" >Edit</a></td>
+            <td>
+            <form action="{% url 'delete' data.id %}" method="POST" class="d-inline" >
+                {% csrf_token %}
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                    <input type="submit" class="btn btn-danger" value="Delete">
+                                    </svg>
+
+            </form>
+            </td>
+        </tr>
+        {% endfor %}
+            </table>
+    </div>
+
+{% else %}
+<h4 class="text-center alert alert-warning" >No Record</h4>
+{% endif %}
+</div>
+</div>
+</div>
+</div>
+{% endblock content %}

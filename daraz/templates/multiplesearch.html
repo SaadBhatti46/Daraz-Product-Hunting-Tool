@@ -1,0 +1,217 @@
+{% extends 'base_sidebar.html' %}
+{% block content %}
+<center>
+
+<div class="container">
+<div class="card">
+    <div class="card-body">
+
+    <form method="POST">
+        {% csrf_token %}
+
+         <h1 style="color: #2c2b7c">Product Hunting</h1>
+    <select name="brand" id="brand" class="select_dropdown">
+        <option selected disabled=true>-- Select Brand --</option>
+        <option>Apple</option>
+        <option>Samsung</option>
+        <option>Vivo</option>
+        <option>itel</option>
+        <option>Redmi</option>
+        <option>Infinix</option>
+        <option>Tecno</option>
+        <option>Nokia</option>
+        <option>Realme</option>
+        <option>OPPO</option>
+        <option>Gfive</option>
+        <option>Oale</option>
+        <option>Sharp</option>
+        <option>MI</option>
+        <option>SONY</option>
+        <option>Huawei</option>
+        <option>OnePlus</option>
+        <option>Qmobile</option>
+        <option>Xiaomi</option>
+        <option>Samsunng</option>
+        <option>Mobile Tecnology</option>
+        <option>No Brand</option>
+    </select>
+{% comment %}    <select name="price">
+         <option selected disabled=true>-- Select Price --</option>
+        <option>200,000</option>
+        <option>150,000</option>
+        <option>100,000</option>
+        <option>50,000</option>
+        <option>10,000</option>
+    </select>{% endcomment %}
+    <select name="rating" id="rating" class="select_dropdown">
+         <option selected disabled=true>-- Select Rating --</option>
+        <option>5</option>
+        <option>4</option>
+        <option>3</option>
+        <option>2</option>
+        <option>1</option>
+    </select>
+{#     <input name="stock" placeholder="Stock" />#}
+        <select name="stock" id="stock" class="select_dropdown">
+         <option selected disabled=true>-- Select Stock --</option>
+        <option>200</option>
+        <option>150</option>
+        <option>100</option>
+        <option>50</option>
+        <option>0</option>
+    </select>
+    <select name="sale" id="sale" class="select_dropdown">
+         <option selected disabled=true>-- Select Sales --</option>
+        <option>10</option>
+        <option>8</option>
+        <option>4</option>
+        <option>2</option>
+        <option>0</option>
+    </select>
+         <div class="input-field">
+                    <i class="fa fa-filter"></i>
+                    <input  type="submit" id="submit" value="Filter" />
+                </div>
+
+
+
+
+{% for data in product %}
+ <div class="card" >
+{#     START  PRODUCTS LISTS     #}
+            <div class="card-body">
+            <div class="cardHeader">
+
+                <h2>{{ data.productName }}</h2>
+            </div>
+                <div class="row">
+                   <ul class="redirect-btn">
+                       <li><a class="bg-blue" href="{{ data.productLink }}" target="_blank" data-toggle="tooltip" title="View on Daraz"> <i class="fa fa-external-link"> </i></a></li>
+                       <li><a  class="bg-green" href="#" data-toggle="tooltip" title="Add to Track"><i class="fa fa-plus"> </i></a></li>
+                       <li><a  class="bg-orange" href="#" data-toggle="tooltip" title="Product calculator"   data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-calculator"> </i></a></li>
+                   </ul>
+                </div>
+<div class="row">
+  <div class="column1" >
+      <img src="{{ data.image }}" class="prod_img">
+
+  </div>
+  <div class="column2" >
+   <table class="table table-bordered" style="width: 700px">
+                <tbody>
+                <tr>
+                    <th>SKU ID</th>
+                    <td style="text-align: center;">{{ data.sku }}</td>
+                    <th>Brand Name</th>
+                    <td style="text-align: center;">{{ data.brand }}</td>
+                    <th>Seller Name</th>
+                 <td style="text-align: center;">{{ data.sellerName }}</td>
+                <th>Seller Rating</th>
+                 <td>{{ data.sellerRating }}</td>
+                 </tr>
+                 <tr>
+                    <th>Price</th>
+                <td style="text-align: center;">{{ data.price }}</td>
+                 <th>Discount</th>
+                 <td style="text-align: center;">{{ data.discount }}</td>
+                  <th>Before Discount</th>
+                 <td>{{ data.beforeDiscount }}</td>
+                  <th>Product Rating</th>
+                  <td>{{ data.rating }}</td>
+
+                </tr>
+                <tr>
+                    <th style="background-color: #a6f98f">Stock</th>
+                 <td style="background-color:#a6f98f">{{ data.stock }}</td>
+                     <th style="background-color: #a6f98f">Product Sales</th>
+                    <td style="background-color: #a6f98f">{{ data.sales }}</td>
+                     <th>Chat Response</th>
+                <td>{{ data.chatRespomse }}</td>
+                </tr>
+
+
+
+                </tbody>
+    </table>
+  </div>
+
+
+</div>
+ </div>
+
+{#    END OF PRODUCT LIST        #}
+
+
+        </div>
+       {% endfor %}
+    </form>
+     </div>
+</div>
+</div>
+</center>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Profit Calculator</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <form method="POST" class="row">
+        {% csrf_token %}
+           <div class="col-lg-6">
+               <label>Category</label>
+      <select name="category" id="sale" class="select_dropdown" required>
+         <option selected disabled=true>-- Select Sales --</option>
+        <option value="12.9">Smart Phones</option>
+    </select>
+           </div>
+           <div class="col-lg-6">
+                <label>VAT</label>
+      <select name="vat" id="sale" class="select_dropdown" required>
+         <option selected disabled=true>-- Select Sales --</option>
+        <option value="16">Punjab</option>
+        <option value="14">Sindh</option>
+        <option value="14">Karachi</option>
+        <option value="15">KPK</option>
+        <option value="15">Bolishtan</option>
+        <option value="13">Islamabad</option>
+        <option value="13">Gilgit</option>
+        <option value="13">Azad kashmir</option>
+    </select>
+           </div>
+
+           <div class="col-lg-6">
+                <label>Selling Price</label>
+     <input type="number" name="sel_price" placeholder="Selling Price" required/>
+           </div>
+           <div class="col-lg-6">
+                <label>Cost Price</label>
+     <input type="number" name="cost_price" placeholder="Costing Price" required/>
+           </div>
+           <div class="col-lg-6">
+               <label>Shipping Price</label>
+     <input type="number" name="shipping_price" placeholder="Costing Price" required/>
+           </div>
+           <div class="col-lg-6">
+                <label>Flyer Price</label>
+     <input type="number" name="Flyer_price" placeholder="Costing Price" required/>
+           </div>
+           <div class="col-lg-6"></div>
+
+      <input type="submit" class="btn_cal"   value="Calculate" style="width: 100%" />
+
+      <h3><b>Product Profit:</b></h3>
+      <center><h2 style="color: #2c2b7c; background-color: #e7f1ff"><b>{{ profit }}%</b></h2></center>
+
+    </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}

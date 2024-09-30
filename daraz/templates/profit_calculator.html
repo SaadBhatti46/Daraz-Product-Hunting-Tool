@@ -1,0 +1,68 @@
+{% extends 'base_sidebar.html' %}
+{% block content %}
+
+{%  if messages   %}
+{%   for meesage in messages   %}
+    <div class = "alert alert-{{ message.tags }}" role="alert" style="color: red;  font-size: 1.2em;">
+    <p{% if meesage.tags %} class=""{% endif %}>{{ meesage }}</p>
+    </div>
+{%  endfor   %}
+{% endif %}
+
+<div class="container mt-5">
+<section class="mb-5">
+<form method="POST" class="bg-light p-5 shadow-lg contact-us-form row">
+    {% csrf_token %}
+    <center><h1><i class="fa fa-calculator"></i>Profit Calculator</h1></center>
+      <div class="col-lg-6 form-group">
+               <label>Category</label>
+      <select name="category" id="sale" class="form-control"  required>
+         <option selected disabled=true>-- Select Sales --</option>
+        <option value="12.9">Smart Phones</option>
+    </select>
+           </div>
+           <div class="col-lg-6 form-group">
+                <label>VAT</label>
+      <select name="vat" id="sale" class=" form-control" required>
+         <option selected disabled=true>-- Select Sales --</option>
+        <option value="16">Punjab</option>
+        <option value="14">Sindh</option>
+        <option value="14">Karachi</option>
+        <option value="15">KPK</option>
+        <option value="15">Bolishtan</option>
+        <option value="13">Islamabad</option>
+        <option value="13">Gilgit</option>
+        <option value="13">Azad kashmir</option>
+    </select>
+           </div>
+
+           <div class="col-lg-6 form-group">
+                <label>Selling Price</label>
+     <input type="number" name="sel_price" placeholder="Selling Price" class="form-control" required/>
+           </div>
+           <div class="col-lg-6 form-group">
+                <label>Cost Price</label>
+     <input type="number" name="cost_price" placeholder="Costing Price" class="form-control" required/>
+           </div>
+           <div class="col-lg-6 form-group">
+               <label>Shipping Price</label>
+     <input type="number" name="shipping_price" placeholder="Costing Price" class="form-control" required/>
+           </div>
+           <div class="col-lg-6 form-group">
+                <label>Flyer Price</label>
+     <input type="number" name="Flyer_price" placeholder="Costing Price" class="form-control" required/>
+           </div>
+        
+       <div class="form-group text-center pt-3 ">
+      <input type="submit" class="form-control btn-primary text-center"  value="Calculate" style="width: 100px; margin: auto; background-color: #2c2b7c" />
+       </div>
+
+      <h3><b>Product Profit:</b></h3>
+      <center><h2 style="color: #2c2b7c; background-color: #e7f1ff"><b>{{ profit }}%</b></h2></center>
+
+</form>
+
+   </section>
+</div>
+
+{% endblock content %}

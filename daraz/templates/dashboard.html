@@ -1,0 +1,304 @@
+{%  extends 'base_sidebar.html' %}
+
+{% block content %}
+
+{#   CARDS     #}
+    {% if request.user.is_staff%}
+         <div class="cardBox">
+           <div class="card_wrapper">
+               <div>
+                   <div class="number">{{ total_user }}</div>
+                   <div class="cardName ">USERS</div>
+               </div>
+               <div class="iconBX">
+                   <ion-icon name="people-outline"></ion-icon>
+               </div>
+           </div>
+
+           <div class="card_wrapper">
+               <div>
+                   <div class="number">{{ total_product }}</div>
+                   <div class="cardName ">TOTAL Products</div>
+               </div>
+               <div class="iconBX">
+                 <ion-icon name="albums-outline"></ion-icon>
+               </div>
+           </div>
+
+           <div class="card_wrapper">
+               <div>
+                   <div class="number">0</div>
+                   <div class="cardName ">Tracking Product User</div>
+               </div>
+               <div class="iconBX">
+                  <ion-icon name="pulse-outline"></ion-icon>
+               </div>
+           </div>
+
+           <div class="card_wrapper">
+               <div>
+                   <div class="number">0</div>
+                   <div class="cardName ">Total Tracking Products </div>
+               </div>
+               <div class="iconBX">
+                  <ion-icon name="analytics-outline"></ion-icon>
+               </div>
+           </div>
+       </div>
+    <div class="container">
+
+    <div class="col-md-8" style="width: 30%; margin-left: 20px">
+        <canvas id="myChart" width="400" height="400"></canvas>
+            <script>
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Total Products','Total User',],
+                    datasets: [{
+                        label: 'products',
+                        data: [{{ total_product }},{{ total_user }}],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            </script>
+        </div>
+
+    </div>
+
+
+
+        {#   DETAIL LIST  #}
+{#        <div class="details">#}
+{#     START  PRODUCTS LISTS     #}
+{#            <div class="recentProducts">#}
+{#            <div class="cardHeader">#}
+{#                <h2>Top Products</h2>#}
+{#                <a href="#" class="btn">View ALL</a>#}
+{#            </div>#}
+{#            <table>#}
+{#                <thead>#}
+{#                <tr>#}
+{#                    <td>SKU ID</td>#}
+{#                    <td>Product NAME</td>#}
+{#                    <td>Price</td>#}
+{#                    <td>Seller NAME</td>#}
+{#                    <td>STATUS</td>#}
+{#                </tr>#}
+{#                </thead>#}
+{#                <tbody>#}
+{#                <tr>#}
+{#                    <td>CSFS1213</td>#}
+{#                    <td>SUMSUNG A32</td>#}
+{#                    <td>50,000</td>#}
+{#                    <td>A1 Mobiles</td>#}
+{#                    <td><span class="status delivered">Delivered</span></td>#}
+{#                </tr>#}
+{#                 <tr>#}
+{#                    <td>CSFS1213</td>#}
+{#                    <td>Laptop</td>#}
+{#                    <td>1,00,000</td>#}
+{#                    <td>A1 Mobiles</td>#}
+{#                    <td><span class="status return">Return</span></td>#}
+{#                </tr>#}
+{#                 <tr>#}
+{#                    <td>CSFS1213</td>#}
+{#                    <td>Shoes</td>#}
+{#                    <td>5,000</td>#}
+{#                    <td>A1 Mobiles</td>#}
+{#                    <td><span class="status inprogress">In Progess</span></td>#}
+{#                </tr>#}
+{##}
+{#                 <tr>#}
+{#                    <td>CSFS1213</td>#}
+{#                    <td>Shoes</td>#}
+{#                    <td>5,000</td>#}
+{#                    <td>A1 Mobiles</td>#}
+{#                    <td><span class="status inprogress">In Progess</span></td>#}
+{#                </tr>#}
+{#                 <tr>#}
+{#                    <td>CSFS1213</td>#}
+{#                    <td>Shoes</td>#}
+{#                    <td>5,000</td>#}
+{#                    <td>A1 Mobiles</td>#}
+{#                    <td><span class="status inprogress">In Progess</span></td>#}
+{#                </tr>#}
+{#                 <tr>#}
+{#                    <td>CSFS1213</td>#}
+{#                    <td>Shoes</td>#}
+{#                    <td>5,000</td>#}
+{#                    <td>A1 Mobiles</td>#}
+{#                    <td><span class="status inprogress">In Progess</span></td>#}
+{#                </tr>#}
+{#                 <tr>#}
+{#                    <td>CSFS1213</td>#}
+{#                    <td>Shoes</td>#}
+{#                    <td>5,000</td>#}
+{#                    <td>A1 Mobiles</td>#}
+{#                    <td><span class="status inprogress">In Progess</span></td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td>CSFS1213</td>#}
+{#                    <td>SUMSUNG A32</td>#}
+{#                    <td>50,000</td>#}
+{#                    <td>A1 Mobiles</td>#}
+{#                    <td><span class="status delivered">Delivered</span></td>#}
+{#                </tr>#}
+{#                 <tr>#}
+{#                    <td>CSFS1213</td>#}
+{#                    <td>Laptop</td>#}
+{#                    <td>1,00,000</td>#}
+{#                    <td>A1 Mobiles</td>#}
+{#                    <td><span class="status return">Return</span></td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td>CSFS1213</td>#}
+{#                    <td>SUMSUNG A32</td>#}
+{#                    <td>50,000</td>#}
+{#                    <td>A1 Mobiles</td>#}
+{#                    <td><span class="status delivered">Delivered</span></td>#}
+{#                </tr>#}
+{##}
+{#                </tbody>#}
+{#            </table>#}
+{#            </div>#}
+{#    END OF PRODUCT LIST        #}
+{##}
+{#     START OF NEW DIV CUSTOMER LIST       #}
+{#            <div class="recentCustomers">#}
+{#                <div class="cardHeader">#}
+{#                    <h2> Recent Users</h2>#}
+{#                </div>#}
+{#                <table>#}
+{#                    <tr>#}
+{#                        <td width="60px"><div class="imgBx"><img src=""></div></td>#}
+{#                        <td><h4>Hassan Farooq<br><span>Pakistan</span></h4></td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td width="60px"><div class="imgBx"><img src=""></div></td>#}
+{#                        <td><h4>Saad Javed<br><span>Pakistan</span></h4></td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td width="60px"><div class="imgBx"><img src=""></div></td>#}
+{#                        <td><h4>Ayesha Javed<br><span>Pakistan</span></h4></td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td width="60px"><div class="imgBx"><img src=""></div></td>#}
+{#                        <td><h4>Ahsaan Hamayao<br><span>Pakistan</span></h4></td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td width="60px"><div class="imgBx"><img src=""></div></td>#}
+{#                        <td><h4>Mujahid Rafiq<br><span>Pakistan</span></h4></td>#}
+{#                    </tr>#}
+{##}
+{#                </table>#}
+{##}
+{#            </div>#}
+{##}
+{#      END OF CUSTOMER LIST DIV      #}
+{##}
+{#        </div>#}
+{#  END OF DETAIL LIST  #}
+    {% else %}
+        <div class="cardBox">
+           <div class="card_wrapper">
+               <div>
+                   <div class="number">{{ total_product }}</div>
+                   <div class="cardName ">TOTAL Products</div>
+               </div>
+               <div class="iconBX">
+                 <ion-icon name="albums-outline"></ion-icon>
+               </div>
+           </div>
+
+           <div class="card_wrapper">
+               <div>
+                   <div class="number">0</div>
+                   <div class="cardName ">Tracking Product User</div>
+               </div>
+               <div class="iconBX">
+                  <ion-icon name="pulse-outline"></ion-icon>
+               </div>
+           </div>
+
+           <div class="card_wrapper">
+               <div>
+                   <div class="number">0</div>
+                   <div class="cardName ">Total Tracking Products </div>
+               </div>
+               <div class="iconBX">
+                  <ion-icon name="analytics-outline"></ion-icon>
+               </div>
+           </div>
+       </div>
+    {% endif %}
+{#       <div class="cardBox">#}
+{#           <div class="card_wrapper">#}
+{#               <div>#}
+{#                   <div class="number">{{ total_user }}</div>#}
+{#                   <div class="cardName ">USERS</div>#}
+{#               </div>#}
+{#               <div class="iconBX">#}
+{#                   <ion-icon name="people-outline"></ion-icon>#}
+{#               </div>#}
+{#           </div>#}
+{##}
+{#           <div class="card_wrapper">#}
+{#               <div>#}
+{#                   <div class="number">{{ total_product }}</div>#}
+{#                   <div class="cardName ">TOTAL Products</div>#}
+{#               </div>#}
+{#               <div class="iconBX">#}
+{#                 <ion-icon name="albums-outline"></ion-icon>#}
+{#               </div>#}
+{#           </div>#}
+{##}
+{#           <div class="card_wrapper">#}
+{#               <div>#}
+{#                   <div class="number">0</div>#}
+{#                   <div class="cardName ">Tracking Product User</div>#}
+{#               </div>#}
+{#               <div class="iconBX">#}
+{#                  <ion-icon name="pulse-outline"></ion-icon>#}
+{#               </div>#}
+{#           </div>#}
+{##}
+{#           <div class="card_wrapper">#}
+{#               <div>#}
+{#                   <div class="number">0</div>#}
+{#                   <div class="cardName ">Total Tracking Products </div>#}
+{#               </div>#}
+{#               <div class="iconBX">#}
+{#                  <ion-icon name="analytics-outline"></ion-icon>#}
+{#               </div>#}
+{#           </div>#}
+{#       </div>#}
+{#  END OF CARD  #}
+
+
+
+{% endblock %}

@@ -1,0 +1,78 @@
+{%  extends 'base_sidebar.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+	.profile-pic{
+		max-width: 200px;
+		max-height:200px;
+		margin: 0 auto;
+		border-radius: 50%;
+	}
+</style>
+
+<br>
+
+<div class="container">
+
+<div class="row">
+        <div class="col-12 col-md-12 col-xl-4  ">
+            <div class="shadow-lg user_info text-center bg-light p-5">
+                <img width="150" height="150" alt="Profile" src="{{request.user.profile.profile_pic.url}}"  class=" rounded-circle   align-self-center">
+                                 <b><h5>{{ request.user.first_name }} {{ request.user.last_name }}</h5></b>
+                                 <h5 class="card-title">{{ request.user.email }}</h5>
+    {#                            <h5>Email: superadmin@maps.com</h5>#}
+    {#                            <h5>Contact: 6104504848</h5>#}
+            </div>
+
+        </div>
+            <div class="col-12 col-md-12 col-xl-8">
+{#                         <div class="card mb-4">#}
+{#                            <div class="card-body">#}
+                                <form class="bg-light p-5 shadow-lg user_info text-center" method="POST" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                        <div class="cardHeader text-center">
+                        <h2>Update Profile</h2>
+                          </div>
+                     <div class="mb-3">
+                      <label for="exampleFormControlTextarea1" class="form-label">Username</label>
+                         {{ form.username }}
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleFormControlInput1" class="form-label">First Name</label>
+                         {{ form.first_name }}
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleFormControlInput1" class="form-label">Last Name</label>
+                        {{ form.last_name }}
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleFormControlInput1" class="form-label">Email</label>
+                        {{ form.email }}
+                    </div>
+                    <div class="form-group">
+                      <label>Change Image</label>
+                        <input type="file" name="image" class="form-control">
+                    </div>
+
+
+
+
+
+{#          this will show all the form same as db  => {{form.as_p}} #}
+
+                <input class="btn btn-primary text-center" type="submit" name="Update Information">
+                </form>
+
+            </div>
+
+
+</div>
+
+
+</div>
+
+
+
+{% endblock %}

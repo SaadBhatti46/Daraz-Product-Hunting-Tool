@@ -1,0 +1,77 @@
+{%  extends 'base_sidebar.html' %}
+
+{% block content %}
+ {% if productdetail %}
+   {% for data in productdetail %}
+ <div class="products">
+{#     START  PRODUCTS LISTS     #}
+            <div class="productHunting">
+            <div class="cardHeader">
+
+                <h2>{{ data.productName }}</h2>
+            </div>
+                <div class="row">
+                <a href="{{ data.productLink }}" data-toggle="tooltip" title="View on Daraz"> <button class="w3-button w3-xlarge w3-circle w3-teal w3-card-4" style=" width: 50px; height: 50px;"><i class="fa fa-external-link"> </i></button></a>
+                 <a href="#" data-toggle="tooltip" title="Add to Track"> <button class="w3-button w3-xlarge w3-circle w3-green w3-card-4" style=" width: 50px; height: 50px;"><i class="fa fa-plus"> </i></button></a>
+                </div>
+<div class="row">
+  <div class="column1" >
+      <img src="{{ data.image }}" class="prod_img">
+
+  </div>
+  <div class="column2" >
+   <table style="width: 700px">
+                <tbody>
+                <tr>
+                    <th>SKU ID</th>
+                    <td style="text-align: center;">{{ data.sku }}</td>
+                    <th>Brand Name</th>
+                    <td style="text-align: center;">{{ data.brand }}</td>
+                    <th>Seller Name</th>
+                 <td style="text-align: center;">{{ data.sellerName }}</td>
+                <th>Seller Rating</th>
+                 <td>{{ data.sellerRating }}</td>
+                 </tr>
+                 <tr>
+                    <th>Price</th>
+                <td style="text-align: center;">{{ data.price }}</td>
+                 <th>Discount</th>
+                 <td style="text-align: center;">{{ data.discount }}</td>
+                  <th>Before Discount</th>
+                 <td>{{ data.beforeDiscount }}</td>
+                  <th>Product Rating</th>
+                  <td>{{ data.rating }}</td>
+
+                </tr>
+                <tr>
+                    <th style="background-color: #a6f98f">Stock</th>
+                 <td style="background-color:#a6f98f">{{ data.stock }}</td>
+                     <th style="background-color: #a6f98f">Product Sales</th>
+                    <td style="background-color: #a6f98f">{{ data.sales }}</td>
+                     <th>Chat Response</th>
+                <td>{{ data.chatRespomse }}</td>
+                </tr>
+
+
+
+                </tbody>
+    </table>
+  </div>
+
+
+</div>
+ </div>
+
+{#    END OF PRODUCT LIST        #}
+
+
+        </div>
+       {% endfor %}
+ {% else %}
+
+ {% endif %}
+
+    {#  END OF DETAIL LIST  #}
+
+
+{% endblock %}
